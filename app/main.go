@@ -31,7 +31,7 @@ func main() {
 
 func runCommand(command string){
 
-	commandTokens := strings.Split(command," ")
+	commandTokens := strings.Split(command[:len(command)-1]," ")
 
 	switch commandTokens[0] {
 		case "exit":
@@ -39,11 +39,13 @@ func runCommand(command string){
 				exitCode := commandTokens[1]
 				if code, err := strconv.Atoi(exitCode); err == nil {
 					os.Exit(code)
+				}else{
+					os.Exit(0)
 				}
 			}else{
 				os.Exit(0)
 			}
 		default:
-			fmt.Fprint(os.Stdout,command[:len(command)-1] + ": command not found\n")
+			fmt.Fprint(os.Stdout,commandTokens[0] + ": command not found\n")
 	}
 }
