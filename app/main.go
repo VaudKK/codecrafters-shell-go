@@ -21,7 +21,7 @@ func main() {
 			return
 		}
 
-		fmt.Fprint(os.Stdout,command[:len(command)-1] + ": command not found")
+		fmt.Fprint(os.Stdout,command[:len(command)-1] + ": command not found\n")
 	}
 	
 }
