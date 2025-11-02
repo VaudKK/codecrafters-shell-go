@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
 
 var _ = fmt.Fprint
@@ -21,7 +23,27 @@ func main() {
 			return
 		}
 
-		fmt.Fprint(os.Stdout,command[:len(command)-1] + ": command not found\n")
+		runCommand(command)
 	}
 	
+}
+
+
+func runCommand(command string){
+
+	commandTokens := strings.Split(command," ")
+
+	switch commandTokens[0] {
+		case "exit":
+			if len(commandTokens) > 1 {
+				exitCode := commandTokens[1]
+				if code, err := strconv.Atoi(exitCode); err == nil {
+					os.Exit(code)
+				}
+			}else{
+				os.Exit(0)
+			}
+		default:
+			fmt.Fprint(os.Stdout,command[:len(command)-1] + ": command not found\n")
+	}
 }
