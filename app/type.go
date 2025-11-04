@@ -5,6 +5,7 @@ import "strings"
 var commands = []string{
 	"exit",
 	"echo",
+	"type",
 }
 
 func IsValidCommand(cmd string) bool {
