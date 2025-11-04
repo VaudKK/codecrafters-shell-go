@@ -54,10 +54,10 @@ func runCommand(command string){
 				if IsValidCommand(commandTokens[1]){
 					fmt.Fprintf(os.Stdout,"%s is a shell builtin\n",commandTokens[1])
 				}else{
-					fmt.Fprintf(os.Stdout,"invalid_command: not found\n")
+					fmt.Fprintf(os.Stdout,"%s: not found\n",commandTokens[1])
 				}
 			}
 		default:
-			fmt.Fprint(os.Stdout,commandTokens[0] + ": command not found\n")
+			fmt.Fprintf(os.Stdout,"%s: not found\n",commandTokens[0])
 	}
 }
