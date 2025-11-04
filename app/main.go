@@ -45,6 +45,10 @@ func runCommand(command string){
 			}else{
 				os.Exit(0)
 			}
+		case "echo":
+			if len(commandTokens) > 1{
+				fmt.Fprintf(os.Stdout,"%s\n",strings.Join(commandTokens[1:]," "))
+			}
 		default:
 			fmt.Fprint(os.Stdout,commandTokens[0] + ": command not found\n")
 	}
