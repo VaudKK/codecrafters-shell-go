@@ -33,7 +33,7 @@ func IsCommandInPath(cmd string) (bool,string){
 		}
 
 		if info, err := os.Stat(fullPath); err == nil {
-			return info.Mode().Perm()&0111 != 0,fullPath
+			return info.Mode().Perm()&0110 != 0,fullPath
 		}
 	}
 
