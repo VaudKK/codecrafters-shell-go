@@ -51,8 +51,10 @@ func runCommand(command string){
 			}
 		case "type":
 			if len(commandTokens) > 1{
-				if IsValidCommand(commandTokens[1]){
+				if IsBuiltIn(commandTokens[1]){
 					fmt.Fprintf(os.Stdout,"%s is a shell builtin\n",commandTokens[1])
+				}else if exists, filePath := IsCommandInPath(commandTokens[1]); exists {
+					fmt.Fprintf(os.Stdout,"%s is %s\n",commandTokens[1],filePath)
 				}else{
 					fmt.Fprintf(os.Stdout,"%s: not found\n",commandTokens[1])
 				}
