@@ -49,6 +49,14 @@ func runCommand(command string){
 			if len(commandTokens) > 1{
 				fmt.Fprintf(os.Stdout,"%s\n",strings.Join(commandTokens[1:]," "))
 			}
+		case "type":
+			if len(commandTokens) > 1{
+				if IsValidCommand(commandTokens[1]){
+					fmt.Fprintf(os.Stdout,"%s is a shell builtin\n",commandTokens[1])
+				}else{
+					fmt.Fprintf(os.Stdout,"invalid_command: not found\n")
+				}
+			}
 		default:
 			fmt.Fprint(os.Stdout,commandTokens[0] + ": command not found\n")
 	}
