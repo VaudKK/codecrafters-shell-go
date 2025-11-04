@@ -32,8 +32,8 @@ func IsCommandInPath(cmd string) (bool,string){
 			fullPath += ".exe"
 		}
 
-		if _, err := os.Stat(fullPath); err == nil {
-			return true,fullPath
+		if info, err := os.Stat(fullPath); err == nil {
+			return info.Mode().Perm()&0111 != 0,fullPath
 		}
 	}
 
