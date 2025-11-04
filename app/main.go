@@ -51,11 +51,7 @@ func runCommand(command string){
 			}
 		case "type":
 			if len(commandTokens) > 1{
-
-				//HardCoded to only handle one argument after type
-				if commandTokens[1] == "my_exe" {
-					fmt.Fprintf(os.Stdout,"my_exe is /tmp/qux/my_exe\n")
-				}else if IsBuiltIn(commandTokens[1]){
+				if IsBuiltIn(commandTokens[1]){
 					fmt.Fprintf(os.Stdout,"%s is a shell builtin\n",commandTokens[1])
 				}else if exists, filePath := IsCommandInPath(commandTokens[1]); exists {
 					fmt.Fprintf(os.Stdout,"%s is %s\n",commandTokens[1],filePath)
