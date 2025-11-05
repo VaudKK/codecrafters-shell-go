@@ -3,10 +3,21 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
+	"strconv"
 )
 
 func echoCommand(args []string) {
-	fmt.Println(args)
-	fmt.Fprintf(os.Stdout, "%s\n", strings.Join(args, ""))
+	out := ""
+
+	for _, arg := range args {
+		unQuoted, err := strconv.Unquote(arg)
+
+		if err != nil {
+			out += arg
+		}else{
+			out += unQuoted
+		}
+	}
+
+	fmt.Fprintf(os.Stdout, "%s\n", out)
 }
