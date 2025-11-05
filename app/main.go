@@ -47,7 +47,7 @@ func runCommand(command string){
 			}
 		case "echo":
 			if len(commandTokens) > 1{
-				fmt.Fprintf(os.Stdout,"%s\n",strings.Join(commandTokens[1:]," "))
+				echoCommand(commandTokens[1:])
 			}
 		case "type":
 			if len(commandTokens) > 1{
