@@ -61,6 +61,10 @@ func runCommand(command string){
 			}
 		case "pwd":
 			fmt.Fprintf(os.Stdout,"%s\n",pwdCommand())
+		case "cd":
+			if len(commandTokens) > 1{
+				cdCommand(commandTokens[1])
+			}
 		default:
 			if exists,_ := IsCommandInPath(commandTokens[0]); exists {
 				RunPathCommand(commandTokens[0],commandTokens[1:],os.Stdout,os.Stderr)
