@@ -11,6 +11,7 @@ var commands = []string{
 	"exit",
 	"echo",
 	"type",
+	"pwd",
 }
 
 func IsBuiltIn(cmd string) bool {

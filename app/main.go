@@ -59,6 +59,8 @@ func runCommand(command string){
 					fmt.Fprintf(os.Stdout,"%s: not found\n",commandTokens[1])
 				}
 			}
+		case "pwd":
+			fmt.Fprintf(os.Stdout,"%s\n",pwdCommand())
 		default:
 			if exists,_ := IsCommandInPath(commandTokens[0]); exists {
 				RunPathCommand(commandTokens[0],commandTokens[1:],os.Stdout,os.Stderr)
