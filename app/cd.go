@@ -1,11 +1,14 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 func cdCommand(arg string) {
 	err := os.Chdir(arg)
 
 	if err != nil {
-		return
+		fmt.Fprintf(os.Stderr, "cd: %s: No such file or directory\n", arg)
 	}
 }
