@@ -7,5 +7,6 @@ import (
 )
 
 func echoCommand(args []string) {
+	fmt.Println(args)
 	fmt.Fprintf(os.Stdout, "%s\n", strings.Join(args, ""))
 }
