@@ -12,12 +12,12 @@ func echoCommand(args []string) {
 
 	rejoined := strings.Join(args, " ")
 
-	if strings.ContainsAny(rejoined, `"'`) {
+	if strings.ContainsAny(rejoined, `'`) {
 		hasQuote = true
 	}
 
 	if hasQuote {
-		out = removeQuotes(rejoined, `"'`)
+		out = removeQuotes(rejoined, `'`)
 		fmt.Fprintf(os.Stdout, "%s\n", out)
 	} else {
 		out = strings.Join(args, " ")
