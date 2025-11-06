@@ -3,30 +3,29 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func echoCommand(args []string) {
 	out := ""
+	hasQuote := false
 
-	for _, arg := range args {
-		// get the string within quotes
-		out += parseString(arg, '\'')
+	rejoined := strings.Join(args, " ")
+
+	if strings.ContainsAny(rejoined, `'`) {
+		hasQuote = true
 	}
 
-	fmt.Fprintf(os.Stdout, "%s\n", out)
+	if hasQuote {
+		out = removeQuotes(rejoined, `'`)
+		fmt.Fprintf(os.Stdout, "%s\n", out)
+	} else {
+		out = strings.Join(args, " ")
+		fmt.Fprintf(os.Stdout, "%s\n", out)
+	}
 }
 
-func parseString(value string, quoteChar byte) string {
-	result := ""
-
-	if len(value) <= 2 {
-		return result
-	}
-
-	// if the first and last char are the quote char remove the quotes
-	if value[0] == quoteChar && value[len(value)-1] == quoteChar {
-		result = value[1 : len(value)-1]
-	}
-
-	return result
+func removeQuotes(s string, quoteChar string) string {
+	cleaned := strings.ReplaceAll(s, quoteChar, "")
+	return cleaned
 }
