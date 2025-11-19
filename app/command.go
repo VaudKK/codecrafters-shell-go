@@ -1,14 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
-	"strings"
 )
 
-func RunPathCommand(command string, args []string, out *os.File, errOut *os.File) {
-	rejoined := strings.Join(args," ");
-	cmd := exec.Command(command, rejoined)
+func runPathCommand(command string, args []string, out *os.File, errOut *os.File) {
+
+	fmt.Println(args)
+
+	cmd := exec.Command(command, args...)
 
 	if out != nil {
 		cmd.Stdout = out

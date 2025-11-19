@@ -66,7 +66,7 @@ func runCommand(command string) {
 		}
 	default:
 		if exists, _ := IsCommandInPath(commandTokens[0]); exists {
-			RunPathCommand(commandTokens[0], commandTokens[1:], os.Stdout, os.Stderr)
+			runPathCommand(commandTokens[0], commandTokens[1:], os.Stdout, os.Stderr)
 		} else {
 			fmt.Fprintf(os.Stdout, "%s: not found\n", commandTokens[0])
 		}
