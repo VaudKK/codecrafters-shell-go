@@ -27,16 +27,6 @@ func cleanEchoInput(args []string) string {
 	}
 }
 
-func cleanInput(args []string) []string{
-	var cleanedArgs []string
-
-	for _, arg := range args {
-		cleanedArgs = append(cleanedArgs, cleanEchoInput([]string{arg}))
-	}
-
-	return cleanedArgs
-}
-
 func removeQuotes(s string, quoteChar string) string {
 	cleaned := strings.ReplaceAll(s, quoteChar, "")
 	return cleaned
