@@ -32,6 +32,8 @@ func runCommand(command string) {
 
 	commandTokens := strings.Split(command[:len(command)-1], " ")
 
+	fmt.Println(splitWithQuotes(command))
+
 	switch commandTokens[0] {
 	case "exit":
 		if len(commandTokens) > 1 {
