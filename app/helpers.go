@@ -11,10 +11,7 @@ func splitWithQuotes(s string) []string {
 
 		if s[i] == '"' {
 			inDoubleQuote = !inDoubleQuote
-			continue
-		}
-
-		if s[i] == '\'' {
+		}else if s[i] == '\'' {
 			if inDoubleQuote {
 				result = append(result, string(s[i]))
 			}else{
