@@ -7,10 +7,10 @@ import (
 )
 
 func echoCommand(args []string) {
-	fmt.Fprintf(os.Stdout,"%s\n", cleanInput(args))
+	fmt.Fprintf(os.Stdout,"%s\n", cleanEchoInput(args))
 }
 
-func cleanInput(args []string) string {
+func cleanEchoInput(args []string) string {
 	hasQuote := false
 
 	rejoined := strings.Join(args, " ")
@@ -25,6 +25,16 @@ func cleanInput(args []string) string {
 		cleaned := strings.Fields(rejoined)
 		return strings.Join(cleaned, " ")
 	}
+}
+
+func cleanInput(args []string) []string{
+	var cleanedArgs []string
+
+	for _, arg := range args {
+		cleanedArgs = append(cleanedArgs, cleanEchoInput([]string{arg}))
+	}
+
+	return cleanedArgs
 }
 
 func removeQuotes(s string, quoteChar string) string {
