@@ -9,20 +9,27 @@ func splitWithQuotes(s string) []string {
 
 	for i := 0; i < len(s); i++ {
 
-		if s[i] == '"' {
+		switch s[i] {
+		case '"':
 			inDoubleQuote = !inDoubleQuote
-		}else if s[i] == '\'' {
+		case '\'':
 			if inDoubleQuote {
 				result = append(result, string(s[i]))
 			}else{
 				inSingleQuote = !inSingleQuote
 			}
-		} else if s[i] == ' ' && (!inSingleQuote || !inDoubleQuote) {
-			if current != "" {
-				result = append(result, current)
-				current = ""
+		case ' ':
+			if inDoubleQuote {
+				current += string(s[i])
+			}else{
+				if !inSingleQuote {
+					if current != "" {
+						result = append(result, current)
+						current = ""
+					}
+				}
 			}
-		} else {
+		default:
 			current += string(s[i])
 		}
 	}
