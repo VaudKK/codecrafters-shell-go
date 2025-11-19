@@ -7,7 +7,7 @@ import (
 )
 
 func runPathCommand(command string, args []string, out *os.File, errOut *os.File) {
-	cmd := exec.Command(command, splitWithQuotes(command + " " + strings.Join(args, " "))...)
+	cmd := exec.Command(command, splitWithQuotes(strings.Join(args, " "))...)
 
 	if out != nil {
 		cmd.Stdout = out
