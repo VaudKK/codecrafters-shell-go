@@ -7,7 +7,7 @@ import (
 )
 
 func echoCommand(args []string) {
-	fmt.Fprintf(os.Stdout,"%s\n", cleanEchoInput(args))
+	fmt.Fprintf(os.Stdout,"%s\n", strings.Join(splitWithQuotes(strings.Join(args, " ")), ""))
 }
 
 func cleanEchoInput(args []string) string {

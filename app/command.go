@@ -23,13 +23,22 @@ func runPathCommand(command string, args []string, out *os.File, errOut *os.File
 func splitWithQuotes(s string) []string {
 	var result []string
 	var current string
-	inQuote := false
+	inSingleQuote := false
+	inDoubleQuote := false
 
 	for i := 0; i < len(s); i++ {
+
+		if s[i] == '"' {
+			inDoubleQuote = !inDoubleQuote
+		}
+
 		if s[i] == '\'' {
-			inQuote = !inQuote
-			// current += string(s[i])
-		} else if s[i] == ' ' && !inQuote {
+			if inDoubleQuote {
+				result = append(result, string(s[i]))
+			}else{
+				inSingleQuote = !inSingleQuote
+			}
+		} else if s[i] == ' ' && !inSingleQuote {
 			if current != "" {
 				result = append(result, current)
 				current = ""
@@ -38,8 +47,10 @@ func splitWithQuotes(s string) []string {
 			current += string(s[i])
 		}
 	}
+
 	if current != "" {
 		result = append(result, current)
 	}
+	
 	return result
 }
