@@ -7,22 +7,23 @@ import (
 )
 
 func echoCommand(args []string) {
-	out := ""
+	fmt.Fprintf(os.Stdout,"%s\n", cleanInput(args))
+}
+
+func cleanInput(args []string) string {
 	hasQuote := false
 
 	rejoined := strings.Join(args, " ")
 
-	if strings.ContainsAny(rejoined, `'"`) {
+	if strings.ContainsAny(rejoined, `'`) {
 		hasQuote = true
 	}
 
 	if hasQuote {
-		out = removeQuotes(rejoined, `'`)
-		fmt.Fprintf(os.Stdout, "%s\n", out)
+		return removeQuotes(rejoined, `'`)
 	} else {
 		cleaned := strings.Fields(rejoined)
-		out = strings.Join(cleaned, " ")
-		fmt.Fprintf(os.Stdout, "%s\n", out)
+		return strings.Join(cleaned, " ")
 	}
 }
 
