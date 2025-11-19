@@ -3,10 +3,12 @@ package main
 import (
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func RunPathCommand(command string, args []string, out *os.File, errOut *os.File) {
-	cmd := exec.Command(command, args...)
+	rejoined := strings.Join(args," ");
+	cmd := exec.Command(command, rejoined)
 
 	if out != nil {
 		cmd.Stdout = out
