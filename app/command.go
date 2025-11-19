@@ -4,11 +4,14 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func runPathCommand(command string, args []string, out *os.File, errOut *os.File) {
 
 	fmt.Println(args)
+
+	fmt.Println(splitWithQuotes(command + " " + strings.Join(args, " ")))
 
 	cmd := exec.Command(command, args...)
 
