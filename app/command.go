@@ -9,7 +9,7 @@ import (
 
 func runPathCommand(command string, args []string, out *os.File, errOut *os.File) {
 
-	fmt.Println(args)
+	fmt.Println(cleanInput(args))
 
 	fmt.Println(splitWithQuotes(command + " " + strings.Join(args, " ")))
 
