@@ -1,19 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"strings"
 )
 
 func runPathCommand(command string, args []string, out *os.File, errOut *os.File) {
-
-	fmt.Println(cleanInput(args))
-
-	fmt.Println(splitWithQuotes(command + " " + strings.Join(args, " ")))
-
-	cmd := exec.Command(command, args...)
+	cmd := exec.Command(command, splitWithQuotes(command + " " + strings.Join(args, " "))...)
 
 	if out != nil {
 		cmd.Stdout = out
